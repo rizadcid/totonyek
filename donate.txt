@@ -1,5 +1,5 @@
-Webhook = "https://discord.com/api/webhooks/1094481560939528212/9ntgtRJadY2V9iF0tlggDqi2vRxY6EZAZOtXcg_J9mHOpgFPLo5KbfLaj_sM1USXNMoC"
-worldinspect = "NAOFYUX"
+Webhook = "https://discord.com/api/webhooks/1089904873119682581/DBQHLly0PgHL1rfLNl4e3gS8paboPOXcYjbI3ja1poNZUiouuGLGs-J-mUhhCSaVhxc7"
+worldinspect = "RIZADPAY"
 
 
 
