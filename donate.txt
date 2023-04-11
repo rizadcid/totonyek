@@ -1,0 +1,56 @@
+Webhook = "https://discord.com/api/webhooks/1094481560939528212/9ntgtRJadY2V9iF0tlggDqi2vRxY6EZAZOtXcg_J9mHOpgFPLo5KbfLaj_sM1USXNMoC"
+worldinspect = "NAOFYUX"
+
+
+
+sendPacket(3,"action|join_request\nname|"..worldinspect.. "\ninvitedWorld|0")
+sleep(2000)
+say("`9Done warp! Searching for Donations!")
+
+function webhok(message)
+    local script = [[
+        $webHookUrl = ']] .. Webhook.. [['
+        $host.ui.RawUI.WindowTitle = "Donation Logged!"
+        [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+        $payload = @{
+            content = ']] .. message .. [['
+        } | ConvertTo-Json -Depth 4
+        Invoke-RestMethod -Uri $webHookUrl -Body $payload -Method Post -ContentType 'application/json'
+    ]]
+    local pipe = io.popen("powershell -command -", "w")
+    pipe:write(script)
+    pipe:close()
+end
+
+function donet(v)
+        if v[0]:find("OnConsoleMessage") and v[1]:find("into the Donation Box") then
+            donetzd = v[1]
+            if donetzd:find("`5") then
+                ddd = donetzd:sub(13):gsub("`5",""):gsub("`7",""):gsub("`2",""):gsub("`w",""):gsub("`","")
+                abc = ddd:find("(%w*) places")
+                abc = ddd:match("(%w*) places")
+                def = ddd:find("places (%d+)")
+                def = ddd:match("places (%d+)")
+                ghi = ddd:find("places "..def.." (.*)")
+                ghi = ddd:match("places "..def.." (.*)")
+                jkl = ghi:find("(.*) into")
+                jkl = ghi:match("(.*) into")
+                webhok("GrowID: "..""..abc.."".."\nDeposit: "..""..""..""..def.." "..jkl.."".."")
+                say("Tysm!")
+            elseif donetzd:find("OID") then
+                ayo = donetzd:sub(27):gsub("`>",""):gsub("`$",""):gsub("`2",""):gsub("`w",""):gsub("]",""):gsub("`",""):gsub("into the Donation Box","")
+                nim = ayo:find("(%w*) places")
+                nim = ayo:match("(%w*) places")
+                ase = ayo:find("places (%d+)")
+                ase = ayo:match("places (%d+)")
+                kal = ayo:find("places "..ase.." (.*)")
+                kal = ayo:match("places "..ase.." (.*)")
+                ibe = kal:find("(.*) into")
+                ibe = kal:match("(.*) into")
+                webhok("\n<:offbutton:873152764279144458> **| Fake Donation!\n==========================\n<:donationbox:979960668281258074>**| GrowID : ".."**"..nim.."**".." Donated ".."**"..ase.." "..kal.."".."\n===========================**".."\n<:globe:1057324507259469884> | World : ".."**"..getBot().world.."\n==========================")
+                say("Fake Donation!")
+            end
+        end
+    end
+
+addHook("v",donet)
